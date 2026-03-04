@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+        h2 { color: #333; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+ 
+<div class="card">
+    <h2>Employee Registration</h2>
+    <form id="registrationForm">
+        <div class="form-group">
+            <label for="empId">Employee ID</label>
+            <input type="text" id="empId" name="empId" placeholder="e.g. EMP-101" required>
+        </div>
+ 
+        <div class="form-group">
+            <label for="empName">Full Name</label>
+            <input type="text" id="empName" name="empName" placeholder="John Doe" required>
+        </div>
+ 
+        <div class="form-group">
+            <label for="branch">Branch</label>
+            <select id="branch" name="branch">
+                <option value="hq">Headquarters (New York)</option>
+                <option value="west">West Coast (LA)</option>
+                <option value="emea">EMEA (London)</option>
+                <option value="apac">APAC (Singapore)</option>
+            </select>
+        </div>
+ 
+        <div class="form-group">
+            <label for="language">Primary Language</label>
+            <input type="text" id="language" name="language" placeholder="e.g. English, Spanish, Japanese">
+        </div>
+ 
+        <button type="submit">Register Employee</button>
+    </form>
+</div>
+<script>
+ 
+ 
+// 1. Define the Employee Class
+class Employee {
+  constructor(id, name, branch, language) {
+    this.id = id;
+    this.name = name;
+    this.branch = branch;
+    this.language = language;
+    this.registrationDate = new Date().toLocaleDateString();
+  }
+}
+ 
+// 2. Use a Closure to manage our Employee Database
+function createEmployeeManager() {
+  const employeeList = []; // This array is private to the closure
+ 
+  return function(event) {
+    event.preventDefault();
+ 
+    // Extracting values from the DOM
+    const id = document.getElementById('empId').value;
+    const name = document.getElementById('empName').value;
+    const branch = document.getElementById('branch').value;
+    const language = document.getElementById('language').value;
+ 
+    // Create a new instance of the Employee class
+    const newEmployee = new Employee(id, name, branch, language);
+ 
+    // Store it in the array
+    employeeList.push(newEmployee);
+ 
+    console.log("Employee Added Successfully!");
+    console.table(employeeList); // Shows the array as a nice table in console
+   
+    event.target.reset(); // Clear the form for the next entry
+  };
+}
+ 
+// 3. Attach the handler to the form
+const form = document.getElementById('registrationForm');
+form.addEventListener('submit', createEmployeeManager());
+ 
+ 
+</script>
+</body>
+</html>
+ 

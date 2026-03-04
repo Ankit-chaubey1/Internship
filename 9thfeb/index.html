@@ -1,0 +1,101 @@
+<!-- implemented counter using clouser in js -->
+
+<html>
+    <body>
+        <script>
+            function mycounter(){
+                let count=0;
+return function(){
+    count++;
+    return count;
+}
+            }
+            const counter=new mycounter();
+            console.log(counter());
+            console.log(counter());
+            console.log(counter());
+
+            //second program
+            // The this Keyword in ClassesIn a class, this refers to the specific instance of the object created by that class. It allows methods to access properties belonging to that unique instance.JavaScriptclass Employee {
+
+//   constructor(name) {
+
+//     this.name = name; // 'this' sets the property on the new object
+
+//   }
+ 
+//   sayHi() {
+
+//     console.log(`Hello, my name is ${this.name}`); 
+
+//     // 'this' points to the object that called the method
+
+//   }
+
+// }
+ 
+// const emp1 = new Employee("Alice");
+
+// emp1.sayHi(); // "Alice" (this === emp1)
+ 
+ 
+// // Call, Apply, and Bind
+
+// // These three methods are used to explicitly set what this should point to. They allow you to "borrow" a function and run it on a different object.
+ 
+// function introduce(language, branch) {
+
+//   console.log(`${this.name} works in ${branch} and speaks ${language}.`);
+
+// }
+ 
+// const empA = { name: "John" };
+
+// const empB = { name: "Sara" };
+ 
+// // 1. Call
+
+// introduce.call(empA, "English", "NYC"); 
+
+// // Output: John works in NYC and speaks English.
+ 
+// // 2. Apply
+
+// introduce.apply(empB, ["Spanish", "Madrid"]);
+
+// // Output: Sara works in Madrid and speaks Spanish.
+ 
+// // 3. Bind
+
+// const introSara = introduce.bind(empB);
+
+// introSara("French", "Paris"); 
+
+// // Output: Sara works in Paris and speaks French.
+ 
+// function introduce(language, branch) {
+
+//   console.log(`${this.name} works in ${branch} and speaks ${language}.`);
+
+// }
+ 
+// const empA = { name: "John" };
+
+// const empB = { name: "Sara" };
+ 
+// // 1. Call
+
+// introduce.call(empA, "English", "NYC"); 
+
+// // Output: John works in NYC and speaks English.
+ 
+// // 2. Apply
+
+// introduce.apply(empB, ["Spanish", "Madrid"]);
+
+// // Output: Sara works in Madrid and speaks Spanish.
+
+ 
+        </script>
+    </body>
+</html>
